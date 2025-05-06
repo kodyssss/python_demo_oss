@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: suseapp
+  labels:
+    app: suse-app
+spec:
+  ports:
+  - port: 5001
+    targetPort: 5001
+    protocol: TCP
+  type: NodePort
+  clusterIP: None
+  selector:
+    app: suse-app
