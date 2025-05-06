@@ -27,9 +27,9 @@ spec:
         - name: MYSQL_DB
           value: suse_db
         - name: OSS_ACCESS_KEY_ID
-          value: LTAI5tBBgFYxQKaEF3ZQ2y9W
+          value: xxxxx
         - name: OSS_ACCESS_KEY_SECRET
-          value: i683yLu5t8FvaqRoci3tAOJjUEbKKN
+          value: xxxxxx
         - name: OSS_ENDPOINT
           value: https://oss-cn-shanghai.aliyuncs.com
         - name: OSS_BUCKET_NAME
