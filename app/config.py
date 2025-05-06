@@ -9,7 +9,7 @@ class Config:
     MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', 'password')
     MYSQL_DB = os.getenv('MYSQL_DB', 'suse_db')
     # OSS 配置
-    OSS_ACCESS_KEY_ID = os.getenv('OSS_ACCESS_KEY_ID', 'LTAI5tBBgFYxQKaEF3ZQ2y9W')
-    OSS_ACCESS_KEY_SECRET = os.getenv('OSS_ACCESS_KEY_SECRET', 'i683yLu5t8FvaqRoci3tAOJjUEbKKN')
+    OSS_ACCESS_KEY_ID = os.getenv('OSS_ACCESS_KEY_ID', 'xxxxxx')
+    OSS_ACCESS_KEY_SECRET = os.getenv('OSS_ACCESS_KEY_SECRET', 'xxxxxx')
     OSS_ENDPOINT = os.getenv('OSS_ENDPOINT', 'oss-cn-shanghai.aliyuncs.com')
     OSS_BUCKET_NAME = os.getenv('OSS_BUCKET_NAME', 'for-kody-iso')
