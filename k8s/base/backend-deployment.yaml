@@ -19,7 +19,7 @@ spec:
         image: registry.cn-hangzhou.aliyuncs.com/kody_poc/suse-backend:latest
         env:
         - name: MYSQL_HOST
-          value: susemysql
+          value: suseappmysql
         - name: MYSQL_USER
           value: root
         - name: MYSQL_PASSWORD
