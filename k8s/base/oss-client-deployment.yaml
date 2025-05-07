@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oss-client
+  labels:
+    app: oss-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oss-client
+  template:
+    metadata:
+      labels:
+        app: oss-client
+    spec:
+      containers:
+      - name: oss-client
+        image: registry.cn-hangzhou.aliyuncs.com/kody_poc/suse-oss-client:latest
+        env:
+        - name: OSS_ACCESS_KEY_ID
+          value: LTAI5tBBgFYxQKaEF3ZQ2y9W
+        - name: OSS_ACCESS_KEY_SECRET
+          value: i683yLu5t8FvaqRoci3tAOJjUEbKKN
+        - name: OSS_ENDPOINT
+          value: https://oss-cn-shanghai.aliyuncs.com
+        - name: OSS_BUCKET_NAME
+          value: for-kody-iso
+        ports:
+        - containerPort: 5002
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: oss-client
+  labels:
+    app: oss-client
+spec:
+  ports:
+  - port: 5002
+    targetPort: 5002
+  selector:
+    app: oss-client
+  type: ClusterIP

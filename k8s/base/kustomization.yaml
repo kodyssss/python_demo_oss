@@ -5,6 +5,8 @@ resources:
   - mysql_svc.yaml
   - mysql_cm.yaml
   - mysql_pvc.yaml
-  - app-deployment.yaml
+  - frontend-deployment.yaml
+  - backend-deployment.yaml
+  - oss-client-deployment.yaml
 commonLabels:
   app.kubernetes.io/part-of: suse-app

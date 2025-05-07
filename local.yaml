@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Config
+clusters:
+- name: "local"
+  cluster:
+    server: "https://rancher.local.com/k8s/clusters/local"
+    certificate-authority-data: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ2akNDQ\
+      VdPZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQkdNUnd3R2dZRFZRUUtFeE5rZVc1aGJXbGoKY\
+      kdsemRHVnVaWEl0YjNKbk1TWXdKQVlEVlFRRERCMWtlVzVoYldsamJHbHpkR1Z1WlhJdFkyRkFNV\
+      GMwTXpnMQpPRFE0TmpBZUZ3MHlOVEEwTURVeE16QTRNRFphRncwek5UQTBNRE14TXpBNE1EWmFNR\
+      Vl4SERBYUJnTlZCQW9UCkUyUjVibUZ0YVdOc2FYTjBaVzVsY2kxdmNtY3hKakFrQmdOVkJBTU1IV\
+      1I1Ym1GdGFXTnNhWE4wWlc1bGNpMWoKWVVBeE56UXpPRFU0TkRnMk1Ga3dFd1lIS29aSXpqMENBU\
+      VlJS29aSXpqMERBUWNEUWdBRUU0c0VPVnpaQ2xyLwpPK3FyWnYwT3B0bklhL0x1cGtnVm5hZ3F2b\
+      nJ4M2xocm1RWWNoZmQrdUJEUlRQVmMvcUpZV1FST3hUdVVZc1VqCktiUy9lU0U0cTZOQ01FQXdEZ\
+      1lEVlIwUEFRSC9CQVFEQWdLa01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWUQKVlIwT0JCWUVGU\
+      DJOYiszN2NHSHFzU21HSFJsRHM5NlBqcC92TUFvR0NDcUdTTTQ5QkFNQ0Ewa0FNRVlDSVFDNgpuN\
+      mY3ZVpVZlY1SHZZWTZLUHRBdk5pMFg1Mm80OXBmTTduVVZaUG5CcndJaEFMUmUya05JWFRzcS9Ca\
+      EZsNTBkCjVucG16VExhYW5QUVoxZTZmNTZ0cGtSTAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t"
+
+users:
+- name: "local"
+  user:
+    token: "kubeconfig-user-p8m986m2ql:cj26n56cwbdrpbdrh5gfgj7lsgsjkjgmk86hjj7tmqrxf9bgd29q6s"
+
+
+contexts:
+- name: "local"
+  context:
+    user: "local"
+    cluster: "local"
+
+current-context: "local"

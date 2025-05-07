@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+- ../../base
+namespace: prod
+namePrefix: prod-
+patchesStrategicMerge:
+- patch-frontend.yaml
+- patch-backend.yaml
+- patch-oss-client.yaml
+resources:
+- ingress.yaml
+commonLabels:
+  environment: prod
