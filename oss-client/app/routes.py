@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from .oss import OSSClient
 import logging
-from magic import Magic
+import traceback
 
 # Configure detailed logging
 logging.basicConfig(
@@ -31,15 +31,10 @@ def create_app():
         object_key = request.form['object_key']
         logger.debug(f"Processing upload for object_key: {object_key}, file: {file.filename}")
 
-        # Validate file content
-        mime = Magic(mime=True)
-        file.stream.seek(0)
-        mime_type = mime.from_buffer(file.stream.read(1024))
-        file.stream.seek(0)
-        if mime_type not in ['image/png', 'image/jpeg']:
-            logger.warning(f"Invalid file type: {mime_type} for file: {file.filename}")
-            return jsonify({'message': '无效的图片格式！'}), 400
-        logger.debug(f"File type validated: {mime_type}")
+        # Basic extension validation (since python-magic is not installed)
+        if not file.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+            logger.warning(f"Invalid file extension: {file.filename}")
+            return jsonify({'message': '仅支持 PNG、JPG 或 JPEG 文件！'}), 400
 
         try:
             url = oss_client.upload_file(object_key, file.stream)
