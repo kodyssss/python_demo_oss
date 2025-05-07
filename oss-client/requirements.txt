@@ -3,5 +3,6 @@ oss2==2.18.6
 python-multipart==0.0.9
 opentelemetry-api==1.27.0
 opentelemetry-sdk==1.27.0
+opentelemetry-instrumentation==0.48b0
 opentelemetry-instrumentation-flask==0.48b0
-opentelemetry-exporter-jaeger==1.21.0
+opentelemetry-exporter-otlp==1.27.0
