@@ -4,10 +4,11 @@ from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.exporter.jaeger.thrift import JaegerExporter
+from opentelemetry.sdk.resources import Resource
 from .routes import create_app
 
 def init_tracing():
-    trace.set_tracer_provider(TracerProvider())
+    trace.set_tracer_provider(TracerProvider(resource=Resource.create({"service.name": "oss-client"})))
     tracer_provider = trace.get_tracer_provider()
     jaeger_exporter = JaegerExporter(
         agent_host_name='jaeger',

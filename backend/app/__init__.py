@@ -5,11 +5,12 @@ from opentelemetry.instrumentation.requests import RequestsInstrumentor
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.exporter.jaeger.thrift import JaegerExporter
+from opentelemetry.sdk.resources import Resource
 from .routes import init_routes
 
 def init_tracing():
-    # Set up the tracer provider
-    trace.set_tracer_provider(TracerProvider())
+    # Set up the tracer provider with service name
+    trace.set_tracer_provider(TracerProvider(resource=Resource.create({"service.name": "backend"})))
     tracer_provider = trace.get_tracer_provider()
 
     # Configure Jaeger exporter
