@@ -3,7 +3,6 @@ from .oss import OSSClient
 import logging
 import traceback
 
-# Configure detailed logging
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s %(levelname)s %(name)s: %(message)s'
@@ -31,7 +30,6 @@ def create_app():
         object_key = request.form['object_key']
         logger.debug(f"Processing upload for object_key: {object_key}, file: {file.filename}")
 
-        # Basic extension validation (since python-magic is not installed)
         if not file.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
             logger.warning(f"Invalid file extension: {file.filename}")
             return jsonify({'message': '仅支持 PNG、JPG 或 JPEG 文件！'}), 400

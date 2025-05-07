@@ -2,11 +2,10 @@ import os
 import requests
 import logging
 import traceback
-from flask import request, jsonify
+from flask import Flask, request, jsonify, render_template
 from .config import Config
 from .database import insert_name, get_all_names
 
-# Configure detailed logging
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s %(levelname)s %(name)s: %(message)s'
@@ -15,6 +14,23 @@ logger = logging.getLogger(__name__)
 
 def init_routes(app):
     OSS_CLIENT_URL = os.getenv('OSS_CLIENT_URL', 'http://oss-client:5002')
+
+    @app.route('/health')
+    def health():
+        logger.debug("Received health check request")
+        return jsonify({'status': 'ok'})
+
+    @app.route('/')
+    def index():
+        logger.debug("Received request for index page")
+        try:
+            names = get_all_names()
+            logger.debug(f"Fetched names from database: {names}")
+            return render_template('index.html', names=names)
+        except Exception as e:
+            logger.error(f"Error fetching names: {str(e)}")
+            logger.error(f"Stack trace: {traceback.format_exc()}")
+            return jsonify({'message': '获取名字列表失败！'}), 500
 
     @app.route('/greet', methods=['POST'])
     def greet():
@@ -60,7 +76,7 @@ def init_routes(app):
                 f'{OSS_CLIENT_URL}/oss-upload',
                 data=data,
                 files=files,
-                timeout=10  # Add timeout to avoid hanging
+                timeout=10
             )
             logger.debug(f"OSS client response: status={response.status_code}, body={response.text}")
             if response.status_code != 200:

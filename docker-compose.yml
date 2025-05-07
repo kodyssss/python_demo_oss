@@ -6,6 +6,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: suse_db
+    volumes:
+      - mysql-data:/var/lib/mysql
     ports:
       - "3306:3306"
     networks:
@@ -59,8 +61,8 @@ services:
     environment:
       OSS_ACCESS_KEY_ID: LTAI5tBBgFYxQKaEF3ZQ2y9W
       OSS_ACCESS_KEY_SECRET: i683yLu5t8FvaqRoci3tAOJjUEbKKN
-      OSS_ENDPOINT: https://oss-cn-shanghai.aliyuncs.com
-      OSS_BUCKET_NAME: for-kody-iso
+      OSS_ENDPOINT: https://oss-cn-hongkong.aliyuncs.com
+      OSS_BUCKET_NAME: for-kody-image
     ports:
       - "5002:5002"
     networks:
@@ -71,7 +73,20 @@ services:
       retries: 5
       start_period: 10s
 
+  jaeger:
+    image: jaegertracing/all-in-one:1.58
+    environment:
+      - COLLECTOR_ZIPKIN_HOST_PORT=:9411
+    ports:
+      - "6831:6831/udp"  # Jaeger agent
+      - "16686:16686"    # Jaeger UI
+      - "9411:9411"      # Zipkin compatible endpoint
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: bridge
 
+volumes:
+  mysql-data:
