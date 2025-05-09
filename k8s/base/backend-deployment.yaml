@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: registry.cn-hangzhou.aliyuncs.com/kody_poc/suse-backend:latest
+        image: registry.cn-hangzhou.aliyuncs.com/kody_poc/suse-backend:v2
         env:
         - name: MYSQL_HOST
           value: suseappmysql
